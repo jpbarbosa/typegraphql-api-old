@@ -24,7 +24,7 @@ export class Article extends BaseEntity {
   @Column()
   text: string;
 
-  @Field()
+  @Field((type) => Author)
   @ManyToOne((type) => Author)
   @JoinColumn({ name: 'authorId' })
   author: Author;
