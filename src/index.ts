@@ -3,6 +3,7 @@ import { ApolloServer } from 'apollo-server';
 import { createConnection, useContainer } from 'typeorm';
 import { createSchema } from './utils/createSchema';
 import Container from 'typedi';
+import { seed } from './utils/seed';
 
 configDotenv();
 
@@ -12,6 +13,8 @@ useContainer(Container);
 
 const main = async () => {
   await createConnection();
+
+  await seed();
 
   const schema = await createSchema();
 
