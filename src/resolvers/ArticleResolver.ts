@@ -1,13 +1,23 @@
-import { Arg, ID, Mutation, Query, Resolver } from 'type-graphql';
+import {
+  Arg,
+  FieldResolver,
+  ID,
+  Mutation,
+  Query,
+  Resolver,
+  Root,
+} from 'type-graphql';
 import { Repository } from 'typeorm';
 import { InjectRepository } from 'typeorm-typedi-extensions';
 import { Article } from '../entities/Article';
+import { Author } from '../entities/Author';
 import { ArticleInput } from './types/ArticleInput';
 
 @Resolver((of) => Article)
 export class ArticleResolver {
   @InjectRepository(Article)
   private readonly articleRepository: Repository<Article>;
+  private readonly authorRepository: Repository<Author>;
 
   @Query((returns) => [Article])
   articles(): Promise<Article[]> {
@@ -57,5 +67,16 @@ export class ArticleResolver {
 
     article.remove();
     return true;
+  }
+
+  @FieldResolver()
+  async author(@Root() article: Article): Promise<Author> {
+    const author = await this.authorRepository.findOne(article.authorId);
+
+    if (!author) {
+      throw new Error(`Author with id ${article.authorId} not found`);
+    }
+
+    return author;
   }
 }
