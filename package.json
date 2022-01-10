@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev ./src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "db:setup": "ts-node ./src/test-utils/setup.ts",
+    "test": "npm run db:setup && jest ./src --watch --detectOpenHandles"
   },
   "dependencies": {
     "apollo-server": "^3.6.1",
@@ -22,5 +24,10 @@
     "typeorm": "^0.2.41",
     "typeorm-typedi-extensions": "^0.4.1",
     "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7",
+    "ts-jest": "^27.1.2"
   }
 }
