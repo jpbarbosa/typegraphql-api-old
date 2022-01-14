@@ -1,20 +1,5 @@
-import { Connection } from 'typeorm';
-import { seed } from '../../utils/seed';
 import { gCall } from '../../test-utils/gCall';
-import { testConn } from '../../test-utils/testConn';
 import { articlesQueries as queries } from '../../queries/articlesQueries';
-
-let conn: Connection;
-
-beforeAll(async () => {
-  conn = await testConn();
-
-  await seed();
-});
-
-afterAll(async () => {
-  await conn.close();
-});
 
 const article = {
   title: 'Title',
