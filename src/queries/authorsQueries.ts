@@ -1,4 +1,4 @@
-import { gql } from '../test-utils/gCall';
+import { gql } from '../testUtils/gCall';
 
 const AUTHOR_FIELDS = gql`
   fragment AuthorFields on Author {

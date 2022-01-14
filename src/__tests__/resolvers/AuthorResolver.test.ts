@@ -1,4 +1,4 @@
-import { gCall } from '../../test-utils/gCall';
+import { gCall } from '../../testUtils/gCall';
 import { authorsQueries as queries } from '../../queries/authorsQueries';
 
 const author = {

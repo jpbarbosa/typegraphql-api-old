@@ -1,4 +1,4 @@
-import { gql } from '../test-utils/gCall';
+import { gql } from '../testUtils/gCall';
 
 const ARTICLE_FIELDS = gql`
   fragment ArticleFields on Article {

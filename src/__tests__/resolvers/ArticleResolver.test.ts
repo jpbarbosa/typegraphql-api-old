@@ -1,4 +1,4 @@
-import { gCall } from '../../test-utils/gCall';
+import { gCall } from '../../testUtils/gCall';
 import { articlesQueries as queries } from '../../queries/articlesQueries';
 
 const article = {
