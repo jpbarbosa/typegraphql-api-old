@@ -1,0 +1,27 @@
+name: CI
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install modules
+        run: yarn
+
+      - name: Run tests
+        run: yarn test:ci --silent --verbose
+        env:
+          TYPEORM_CONNECTION: sqlite
+          TYPEORM_DATABASE: ':memory:'
+          TYPEORM_SYNCHRONIZE: true
+          TYPEORM_ENTITIES: './src/entities/*.ts'
+          TYPEORM_SUBSCRIBERS: './src/subscribers/*.ts'
