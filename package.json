@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "ts-node-dev ./src/index.ts",
     "build": "tsc",
+    "start": "node ./build/index.js",
     "test": "jest ./src --watch --detectOpenHandles",
     "test:ci": "jest ./src --ci --detectOpenHandles"
   },
