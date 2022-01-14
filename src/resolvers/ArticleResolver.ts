@@ -65,7 +65,8 @@ export class ArticleResolver {
       throw new Error(`Article with id ${id} not found`);
     }
 
-    article.remove();
+    await article.remove();
+
     return true;
   }
 

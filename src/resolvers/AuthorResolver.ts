@@ -55,7 +55,8 @@ export class AuthorResolver {
       throw new Error(`Author with id ${id} not found`);
     }
 
-    author.remove();
+    await author.remove();
+
     return true;
   }
 }
