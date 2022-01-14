@@ -1,53 +1,9 @@
 import { Connection } from 'typeorm';
 import { seed } from '../../utils/seed';
-import { gql, gCall } from '../../test-utils/gCall';
-import { testConn } from '../../test-utils/testConn';
 import { createSchema } from '../../utils/createSchema';
-
-const queries = {
-  CREATE: gql`
-    mutation ($data: ArticleInput!) {
-      createArticle(data: $data) {
-        id
-        title
-        text
-        authorId
-      }
-    }
-  `,
-  GET: gql`
-    query ($id: ID!) {
-      article(id: $id) {
-        id
-        title
-        text
-        authorId
-      }
-    }
-  `,
-  GET_ALL: gql`
-    query {
-      articles {
-        id
-      }
-    }
-  `,
-  UPDATE: gql`
-    mutation ($id: ID!, $data: ArticleInput!) {
-      updateArticle(id: $id, data: $data) {
-        id
-        title
-        text
-        authorId
-      }
-    }
-  `,
-  REMOVE: gql`
-    mutation ($id: ID!) {
-      removeArticle(id: $id)
-    }
-  `,
-};
+import { gCall } from '../../test-utils/gCall';
+import { testConn } from '../../test-utils/testConn';
+import { articlesQueries as queries } from '../../queries/articlesQueries';
 
 let conn: Connection;
 
