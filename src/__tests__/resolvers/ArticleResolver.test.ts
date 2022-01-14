@@ -1,6 +1,5 @@
 import { Connection } from 'typeorm';
 import { seed } from '../../utils/seed';
-import { createSchema } from '../../utils/createSchema';
 import { gCall } from '../../test-utils/gCall';
 import { testConn } from '../../test-utils/testConn';
 import { articlesQueries as queries } from '../../queries/articlesQueries';
@@ -33,9 +32,7 @@ describe('articles', () => {
   let id: string;
 
   it('create', async () => {
-    const schema = await createSchema();
-
-    const response = await gCall(schema)({
+    const response = await gCall({
       source: queries.CREATE,
       variableValues: {
         data: article,
@@ -52,9 +49,7 @@ describe('articles', () => {
   });
 
   it('retrieve', async () => {
-    const schema = await createSchema();
-
-    const response = await gCall(schema)({
+    const response = await gCall({
       source: queries.GET,
       variableValues: {
         id,
@@ -69,9 +64,7 @@ describe('articles', () => {
   });
 
   it('update', async () => {
-    const schema = await createSchema();
-
-    const response = await gCall(schema)({
+    const response = await gCall({
       source: queries.UPDATE,
       variableValues: {
         id,
@@ -87,9 +80,7 @@ describe('articles', () => {
   });
 
   it('remove', async () => {
-    const schema = await createSchema();
-
-    const response = await gCall(schema)({
+    const response = await gCall({
       source: queries.REMOVE,
       variableValues: {
         id,
@@ -104,9 +95,7 @@ describe('articles', () => {
   });
 
   it('retrieve all', async () => {
-    const schema = await createSchema();
-
-    const response = await gCall(schema)({
+    const response = await gCall({
       source: queries.GET_ALL,
     });
 
