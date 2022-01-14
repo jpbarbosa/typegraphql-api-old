@@ -17,6 +17,7 @@ import { ArticleInput } from './types/ArticleInput';
 export class ArticleResolver {
   @InjectRepository(Article)
   private readonly articleRepository: Repository<Article>;
+  @InjectRepository(Author)
   private readonly authorRepository: Repository<Author>;
 
   @Query((returns) => [Article])

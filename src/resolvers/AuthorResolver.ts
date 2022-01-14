@@ -1,6 +1,15 @@
-import { Arg, ID, Mutation, Query, Resolver } from 'type-graphql';
+import {
+  Arg,
+  FieldResolver,
+  ID,
+  Mutation,
+  Query,
+  Resolver,
+  Root,
+} from 'type-graphql';
 import { Repository } from 'typeorm';
 import { InjectRepository } from 'typeorm-typedi-extensions';
+import { Article } from '../entities/Article';
 import { Author } from '../entities/Author';
 import { AuthorInput } from './types/AuthorInput';
 
@@ -8,6 +17,8 @@ import { AuthorInput } from './types/AuthorInput';
 export class AuthorResolver {
   @InjectRepository(Author)
   private readonly authorRepository: Repository<Author>;
+  @InjectRepository(Article)
+  private readonly articleRepository: Repository<Article>;
 
   @Query((returns) => [Author])
   authors(): Promise<Author[]> {
@@ -58,5 +69,12 @@ export class AuthorResolver {
     await author.remove();
 
     return true;
+  }
+
+  @FieldResolver()
+  async articles(@Root() author: Author): Promise<Article[]> {
+    return this.articleRepository.find({
+      where: { authorId: author.id },
+    });
   }
 }

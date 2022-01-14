@@ -48,6 +48,17 @@ describe('articles', () => {
     });
   });
 
+  it('retrieve article with author', async () => {
+    const response = await gCall({
+      source: queries.GET_WITH_AUTHOR,
+      variableValues: {
+        id,
+      },
+    });
+
+    expect(response.data?.article.author.name).toBeDefined();
+  });
+
   it('update', async () => {
     const response = await gCall({
       source: queries.UPDATE,
