@@ -2,6 +2,10 @@
 
 A simple GraphQL API back-end with TypeScript.
 
+### Step-by-Step Tutorial
+
+https://github.com/jpbarbosa/typegraphql-api/wiki
+
 ### Main Packages
 
 * TypeGraphQL
