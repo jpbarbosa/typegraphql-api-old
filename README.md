@@ -14,6 +14,7 @@ A simple GraphQL API back-end with TypeScript.
 * Relations
 * Seeds
 * Tests with Jest
+* Deploy to Heroku
 
 ### References
 
